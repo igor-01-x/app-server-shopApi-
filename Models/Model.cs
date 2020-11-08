@@ -17,6 +17,7 @@ namespace DbClassLib.Models
         public string Description { get; set; }
         public string Image { get; set; }
 
+        public virtual Katalog Katalog { get; set; }
         public virtual ICollection<Product> Product { get; set; }
     }
 }

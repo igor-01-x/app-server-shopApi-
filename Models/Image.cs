@@ -5,7 +5,7 @@ namespace DbClassLib.Models
 {
     public partial class Image
     {
-        public int Id { get; set; }
+        public uint Id { get; set; }
         public string Name { get; set; }
         public string Path { get; set; }
         public int ProductId { get; set; }
