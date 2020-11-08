@@ -1,33 +1,43 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
+
 
 namespace DbClassLib.Models
 {
     public partial class MyShopContext : DbContext
-    {
-        public MyShopContext()
-        {
-        }
+    {     IConfiguration _config;
 
-        public MyShopContext(DbContextOptions<MyShopContext> options)
-            : base(options)
-        {
-        }
+        
 
         public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<Katalog> Katalog { get; set; }
-        public virtual DbSet<Model> Model { get; set; }
+        public new virtual DbSet<Model> Model { get; set; }
         public virtual DbSet<Nomenclature> Nomenclature { get; set; }
         public virtual DbSet<ProdNomenclatures> ProdNomenclatures { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+
+
+        //----------------- 
+        public MyShopContext(DbContextOptions<MyShopContext> options,IConfiguration config)
+            : base(options)
+        { 
+            _config=config;
+             Database.SetCommandTimeout(300);
+          Database.EnsureDeleted();  //24.10.20
+            Database.EnsureCreated();
+        }
+
+
+        //------------------------------------------------
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost;port=3306;userid=root;password=747Ii81FN3DL;database=MyShop", x => x.ServerVersion("8.0.21-mysql"));
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseMySql(_config["ConnectStringLocal"]);
             }
         }
 
@@ -219,7 +229,46 @@ namespace DbClassLib.Models
 
             OnModelCreatingPartial(modelBuilder);
         }
+           
+           /// <summary>
+           ///Здесь инициалицируем  БД (субд)  начальными данными
+           /// </summary>
+           /// <param name="modelBuilder"></param>
+            void OnModelCreatingPartial(ModelBuilder modelBuilder){
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+                OnModelKatalogCreating(modelBuilder);
+
+
+
+        }
+
+               private void OnModelKatalogCreating(ModelBuilder modelBuilder){
+         
+          
+  
+        var  kagalog=new Katalog[]{
+        new Katalog {Id=1,Name="Камод"},
+         new Katalog{Id=2,Name="Кровать"},
+          new Katalog{Id=3,Name="Шкаф"},
+          new Katalog{Id=4,Name="Кухонный Уголок"},
+          new Katalog{Id=5,Name="Стол Обеденный"} ,
+          new Katalog{Id=6,Name="Стол Писменный"},
+          new Katalog{Id=7,Name="Стол Журнальный"},
+          new Katalog{Id=8,Name="Стол Маникюрный"},
+          new Katalog{Id=9,Name="Стол Тумба"},
+          new Katalog{Id=10,Name="Гномик"},
+          new Katalog{Id=11,Name="Комплектующие"}
+
+        };
+
+        Console.WriteLine("Create -----------      ProductType()---------- Start->");
+
+         modelBuilder.Entity<Katalog>().HasData( kagalog);
+            base.OnModelCreating(modelBuilder);
+  
+
+              
+        
+     }
     }
 }
