@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 
-
+// partial class должны быть в одном и томже namespace !!!!
+// не получилось использовать partial в разных проектах ShopDbLib and WibShopApi
 namespace ShopDbLib.Models
 {
     public partial class AppDbContext : DbContext
@@ -17,6 +18,7 @@ namespace ShopDbLib.Models
         public virtual DbSet<Nomenclature> Nomenclature { get; set; }
         public virtual DbSet<ProdNomenclatures> ProdNomenclatures { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         //----------------- 
@@ -32,7 +34,10 @@ namespace ShopDbLib.Models
 
         //------------------------------------------------
 
-       
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySql( _config["ConnectStringLocal"]);      //Startup.GetConnetionStringDB());
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -224,16 +229,15 @@ namespace ShopDbLib.Models
         }
 
 
-        //Здесь инициалицируем  БД (субд)  начальными данными
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
+        //Здесь инициалицируем  БД (субд)  начальными данными  
+          partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
             OnModelKatalogCreating(modelBuilder);
+            OnModelAuthCreating(modelBuilder);
         }
 
-
-               private void OnModelKatalogCreating(ModelBuilder modelBuilder){
+        private void OnModelKatalogCreating(ModelBuilder modelBuilder){
          
           
   
@@ -261,5 +265,50 @@ namespace ShopDbLib.Models
               
         
      }
+     
+        //  при создании бд  создается admin 
+        private void OnModelAuthCreating(ModelBuilder modelBuilder)
+        {
+
+            var initObject = _config.GetSection("Users");
+            var admin = initObject.GetSection("Admin");
+            var user = initObject.GetSection("User");
+            string adminEmail = admin["Email"];// ";
+            string adminPassword = admin["Password"];
+            string userEmail = user["Email"]; //  "user@mail.ru";
+            string userPassword = user["Password"];// "";
+            string userPhone = user["Phone"];// "+79181111111";
+            string userName = "user";
+
+            // добавляем роли
+
+            User adminUser = new User
+            {
+                Id = 1,
+                Email = adminEmail,
+                Password = adminPassword,
+                Role = Role.Admin,
+                Name = admin["Name"]
+            ,
+                Address = "",
+                Phone = admin["Phone"]
+            };
+            User user1 = new User
+            {
+                Id = 2,
+                Email = userEmail,
+                Password = userPassword,
+                Name = userName,
+                Role = Role.User,
+                Address = "",
+                Phone = userPhone
+            };
+            // modelBuilder.Entity<User>().Property(u=>u.Role).HasDefaultValue(Role.User);
+
+            modelBuilder.Entity<User>().HasData(new User[] { adminUser, user1 });
+            base.OnModelCreating(modelBuilder);
+
+
+        }
     }
 }
