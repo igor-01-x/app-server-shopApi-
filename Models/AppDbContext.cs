@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 
 
-namespace DbClassLib.Models
+namespace ShopDbLib.Models
 {
-    public partial class MyShopContext : DbContext
+    public partial class AppDbContext : DbContext
     {     IConfiguration _config;
 
         
@@ -20,7 +20,7 @@ namespace DbClassLib.Models
 
 
         //----------------- 
-        public MyShopContext(DbContextOptions<MyShopContext> options,IConfiguration config)
+        public AppDbContext(DbContextOptions<AppDbContext> options,IConfiguration config)
             : base(options)
         { 
             _config=config;
@@ -32,14 +32,7 @@ namespace DbClassLib.Models
 
         //------------------------------------------------
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql(_config["ConnectStringLocal"]);
-            }
-        }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -229,18 +222,16 @@ namespace DbClassLib.Models
 
             OnModelCreatingPartial(modelBuilder);
         }
-           
-           /// <summary>
-           ///Здесь инициалицируем  БД (субд)  начальными данными
-           /// </summary>
-           /// <param name="modelBuilder"></param>
-            void OnModelCreatingPartial(ModelBuilder modelBuilder){
-
-                OnModelKatalogCreating(modelBuilder);
 
 
+        //Здесь инициалицируем  БД (субд)  начальными данными
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
+        {
+            OnModelKatalogCreating(modelBuilder);
         }
+
 
                private void OnModelKatalogCreating(ModelBuilder modelBuilder){
          

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fOmfObx8Z7P2tFLzTs7xprr4F5omhVJO82poSIolwSS39Rvht10r5alOfjbJ07zp6L96RMO+nl8nAR6+Q+A3UQ==",
+  "dgSpecHash": "f/fpoiJI+XxLqZjTgk7GAEGNm0K/hdoRoRaPkuyRcMvTrVefe4j4kyJ1zS5XN1poi3vrNsziroqabJ24Q0lofA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ks34\\Documents\\VS_Prodject\\DbLib\\DbClassLib.csproj",
+  "projectFilePath": "C:\\Users\\Ks34\\Documents\\VS_Prodject\\ShopDbLib\\ShopDbLib.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ks34\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Ks34\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

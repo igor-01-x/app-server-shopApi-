@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ks34\\Documents\\VS_Prodject\\DBLib\\DbClassLib.csproj": {}
+    "C:\\Users\\Ks34\\Documents\\VS_Prodject\\ShopDbLib\\ShopDbLib.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ks34\\Documents\\VS_Prodject\\DBLib\\DbClassLib.csproj": {
+    "C:\\Users\\Ks34\\Documents\\VS_Prodject\\ShopDbLib\\ShopDbLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ks34\\Documents\\VS_Prodject\\DBLib\\DbClassLib.csproj",
-        "projectName": "DbClassLib",
-        "projectPath": "C:\\Users\\Ks34\\Documents\\VS_Prodject\\DBLib\\DbClassLib.csproj",
+        "projectUniqueName": "C:\\Users\\Ks34\\Documents\\VS_Prodject\\ShopDbLib\\ShopDbLib.csproj",
+        "projectName": "ShopDbLib",
+        "projectPath": "C:\\Users\\Ks34\\Documents\\VS_Prodject\\ShopDbLib\\ShopDbLib.csproj",
         "packagesPath": "C:\\Users\\Ks34\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ks34\\Documents\\VS_Prodject\\DBLib\\obj\\",
+        "outputPath": "C:\\Users\\Ks34\\Documents\\VS_Prodject\\ShopDbLib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

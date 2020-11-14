@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    "\\bin",
-    "\\obj"
+    "",
+    "\\Models"
   ],
+  "SelectedNode": "\\Models\\ShopDbContext.cs",
   "PreviewInSolutionExplorer": false
 }

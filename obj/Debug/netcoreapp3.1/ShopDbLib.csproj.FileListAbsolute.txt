@@ -1,0 +1,12 @@
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\bin\Debug\netcoreapp3.1\ShopDbLib.deps.json
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\bin\Debug\netcoreapp3.1\ShopDbLib.runtimeconfig.json
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\bin\Debug\netcoreapp3.1\ShopDbLib.runtimeconfig.dev.json
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\bin\Debug\netcoreapp3.1\ShopDbLib.dll
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\bin\Debug\netcoreapp3.1\ShopDbLib.pdb
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\obj\Debug\netcoreapp3.1\ShopDbLib.csprojAssemblyReference.cache
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\obj\Debug\netcoreapp3.1\ShopDbLib.AssemblyInfoInputs.cache
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\obj\Debug\netcoreapp3.1\ShopDbLib.AssemblyInfo.cs
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\obj\Debug\netcoreapp3.1\ShopDbLib.csproj.CoreCompileInputs.cache
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\obj\Debug\netcoreapp3.1\ShopDbLib.dll
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\obj\Debug\netcoreapp3.1\ShopDbLib.pdb
+C:\Users\Ks34\Documents\VS_Prodject\ShopDbLib\obj\Debug\netcoreapp3.1\ShopDbLib.genruntimeconfig.cache

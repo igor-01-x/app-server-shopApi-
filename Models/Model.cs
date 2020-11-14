@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DbClassLib.Models
+namespace ShopDbLib.Models
 {
     public partial class Model
     {
