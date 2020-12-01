@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace ShopDbLib.Models
 {
-    public partial class Product
+    public partial class Nomenclatura
     {
-        public Product()
+        public Nomenclatura()
         {
             Image = new HashSet<Image>();
-            ProdNomenclatures = new HashSet<ProdNomenclatures>();
+           NomenclaturaComponents  = new HashSet<NomenclaturaComponents>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace ShopDbLib.Models
 
         public virtual Model Model { get; set; }
         public virtual ICollection<Image> Image { get; set; }
-        public virtual ICollection<ProdNomenclatures> ProdNomenclatures { get; set; }
+        public virtual ICollection<NomenclaturaComponents> NomenclaturaComponents { get; set; }
     }
 }

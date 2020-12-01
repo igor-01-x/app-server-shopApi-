@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace ShopDbLib.Models
 {
-    public partial class Image
+    public partial class NomenclaturaComponents
     {
-        public uint Id { get; set; }
-        public string Name { get; set; }
-        public string Path { get; set; }
+        public int Id { get; set; }
         public int ProductId { get; set; }
+        public int ComponentId { get; set; }
 
+        public virtual Component Component { get; set; }
         public virtual Nomenclatura Nomenclatura { get; set; }
     }
 }

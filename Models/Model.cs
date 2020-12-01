@@ -7,7 +7,7 @@ namespace ShopDbLib.Models
     {
         public Model()
         {
-            Product = new HashSet<Product>();
+            Nomenclatura = new HashSet<Nomenclatura>();
         }
 
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace ShopDbLib.Models
         public string Description { get; set; }
         public string Image { get; set; }
 
-        public virtual Katalog Katalog { get; set; }
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual Katalog Katalog { get; set; }  // навигационное свойство
+        public virtual ICollection<Nomenclatura> Nomenclatura { get; set; }
     }
 }

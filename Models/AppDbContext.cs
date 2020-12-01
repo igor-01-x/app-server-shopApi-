@@ -15,9 +15,9 @@ namespace ShopDbLib.Models
         public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<Katalog> Katalog { get; set; }
         public new virtual DbSet<Model> Model { get; set; }
-        public virtual DbSet<Nomenclature> Nomenclature { get; set; }
-        public virtual DbSet<ProdNomenclatures> ProdNomenclatures { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<Component> Nomenclature { get; set; }
+        public virtual DbSet<NomenclaturaComponents> NomenclaturaComponents { get; set; }
+        public virtual DbSet<Nomenclatura> Nomenclatura { get; set; }
         public DbSet<User> Users { get; set; }
 
 
@@ -27,7 +27,7 @@ namespace ShopDbLib.Models
         { 
             _config=config;
              Database.SetCommandTimeout(300);
-          Database.EnsureDeleted();  //24.10.20
+         // Database.EnsureDeleted();  //23.11.20
             Database.EnsureCreated();
         }
 
@@ -75,11 +75,11 @@ namespace ShopDbLib.Models
 
                 entity.Property(e => e.ProductId).HasColumnName("Product_id");
 
-                entity.HasOne(d => d.Product)
+                entity.HasOne(d => d.Nomenclatura)
                     .WithMany(p => p.Image)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Image_Product1");
+                    .HasConstraintName("fk_Image_Nomenclatura1");
             });
 
             modelBuilder.Entity<Katalog>(entity =>
@@ -135,7 +135,7 @@ namespace ShopDbLib.Models
                     .HasConstraintName("fk_Model_Katalog");
             });
 
-            modelBuilder.Entity<Nomenclature>(entity =>
+            modelBuilder.Entity<Component>(entity =>
             {
                 entity.HasIndex(e => e.Name)
                     .HasName("name_UNIQUE")
@@ -165,14 +165,14 @@ namespace ShopDbLib.Models
                 entity.Property(e => e.Price).HasColumnName("price");
             });
 
-            modelBuilder.Entity<ProdNomenclatures>(entity =>
+            modelBuilder.Entity<NomenclaturaComponents>(entity =>
             {
-                entity.HasKey(e => new { e.Id, e.NomenclatureId })
+                entity.HasKey(e => new { e.Id, e.ComponentId })
                     .HasName("PRIMARY")
                     .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
 
-                entity.HasIndex(e => e.NomenclatureId)
-                    .HasName("fk_Состав_Nomenclature1_idx");
+                entity.HasIndex(e => e.ComponentId)
+                    .HasName("fk_Состав_Component1_idx");
 
                 entity.HasIndex(e => e.ProductId)
                     .HasName("fk_Состав_Product1_idx");
@@ -181,27 +181,27 @@ namespace ShopDbLib.Models
                     .HasColumnName("id")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.NomenclatureId).HasColumnName("Nomenclature_id");
+                entity.Property(e => e.ComponentId).HasColumnName("Component_id");
 
                 entity.Property(e => e.ProductId).HasColumnName("Product_id");
 
-                entity.HasOne(d => d.Nomenclature)
-                    .WithMany(p => p.ProdNomenclatures)
-                    .HasForeignKey(d => d.NomenclatureId)
+                entity.HasOne(d => d.Component)
+                    .WithMany(p => p.NomenclaturaComponents)
+                    .HasForeignKey(d => d.ComponentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Состав_Nomenclature1");
+                    .HasConstraintName("fk_Состав_Components1");
 
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.ProdNomenclatures)
+                entity.HasOne(d => d.Nomenclatura)
+                    .WithMany(p => p.NomenclaturaComponents)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Состав_Product1");
             });
 
-            modelBuilder.Entity<Product>(entity =>
+            modelBuilder.Entity<Nomenclatura>(entity =>
             {
                 entity.HasIndex(e => e.ModelId)
-                    .HasName("fk_Product_Model1_idx");
+                    .HasName("fk_Nomenclatura_Model1_idx");
 
                 entity.HasIndex(e => e.Name)
                     .HasName("name_UNIQUE")
@@ -219,10 +219,10 @@ namespace ShopDbLib.Models
                     .HasCollation("utf8_general_ci");
 
                 entity.HasOne(d => d.Model)
-                    .WithMany(p => p.Product)
+                    .WithMany(p => p.Nomenclatura)
                     .HasForeignKey(d => d.ModelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Product_Model1");
+                    .HasConstraintName("fk_Nomenclatura_Model1");
             });
 
             OnModelCreatingPartial(modelBuilder);
